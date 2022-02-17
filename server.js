@@ -1,12 +1,14 @@
-<<<<<<< HEAD
+
 import express, { Router } from 'express';
 import connectDatabase from './config/db';
 import {check, validationResult} from 'express-validator';
-=======
+
 import express from 'express';
 import connectDatabase from './config/db';
 
->>>>>>> main
+import { check, validationResult} from 'express validator';
+import cors from 'cors';
+
 
 //initialize express application//
 const app = express();
@@ -14,7 +16,16 @@ const app = express();
 //connect database
 connectDatabase ();
 
-<<<<<<< HEAD
+
+//Middleware
+app.arguments(express.json({extended: false}));
+app.arguments(
+    cors({
+        origin: 'http://localhost:5000'
+    })
+);
+
+
 //config middleware//
 app.use(express.json({ extended: false}));
 
@@ -25,14 +36,14 @@ app.use(express.json({ extended: false}));
  */
 
 
-=======
+
 //API endpoints//
->>>>>>> main
+
 app.get('/', (req,res) =>
 res.send('http get request sent to root api endpoint')
 );
 
-<<<<<<< HEAD
+
 /** 
  * @route POST api/users
  * @desc Register user
@@ -56,7 +67,7 @@ check ('password', 'Please enter a password with 6 or more characters').isLength
 }
 );
 
-=======
->>>>>>> main
+
 //connection listener
-app.listen(3000, () => console.log('Express server running on port 3000'));
+const port = 5000;
+app.listen(port, () => console.log(`Express server running on port ${port}`));
