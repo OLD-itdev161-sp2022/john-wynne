@@ -8,15 +8,15 @@ class App extends React.Component {
     data: null
   }
 componentDidMount(){
-  axios.get(' http://localhost:3000')
-  .then ((response) => {
-this.setState ({
-  data: response.data
-})
-  })
-  .catch ((error) => {
-    console.error(`Error fetching data: ${error}`);
-  });
+  axios.get('http://localhost:5000')
+    .then ((response) => {
+      this.setState ({
+        data: response.data
+      })
+    })
+    .catch ((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
 }
 
   render (){

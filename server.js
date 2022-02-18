@@ -1,12 +1,7 @@
 
-import express, { Router } from 'express';
-import connectDatabase from './config/db';
-import {check, validationResult} from 'express-validator';
-
 import express from 'express';
 import connectDatabase from './config/db';
-
-import { check, validationResult} from 'express validator';
+import {check, validationResult} from 'express-validator';
 import cors from 'cors';
 
 
@@ -16,18 +11,13 @@ const app = express();
 //connect database
 connectDatabase ();
 
-
-//Middleware
-app.arguments(express.json({extended: false}));
-app.arguments(
+//config middleware//
+app.use(express.json({extended: false}));
+app.use(
     cors({
-        origin: 'http://localhost:5000'
+        origin: 'http://localhost:3000'
     })
 );
-
-
-//config middleware//
-app.use(express.json({ extended: false}));
 
 //API endpoints
 /** 
@@ -40,7 +30,7 @@ app.use(express.json({ extended: false}));
 //API endpoints//
 
 app.get('/', (req,res) =>
-res.send('http get request sent to root api endpoint')
+    res.send('http get request sent to root api endpoint')
 );
 
 
