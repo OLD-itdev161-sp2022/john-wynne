@@ -86,7 +86,7 @@ check ('password', 'Please enter a password with 6 or more characters').isLength
                 user: {
                     id: user.id
                 }
-            }
+            };
 
             jwt.sign(
                 payload,
@@ -97,7 +97,7 @@ check ('password', 'Please enter a password with 6 or more characters').isLength
                     res.json({ token: token});
                 }
                  
-            )
+            );
 
 
 
