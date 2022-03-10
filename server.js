@@ -17,7 +17,7 @@ connectDatabase ();
 app.use(express.json({extended: false}));
 app.use(
     cors({
-        origin: 'http://localhost:3000'
+        origin: 'http://localhost:5000'
     })
 );
 
@@ -71,13 +71,23 @@ check ('password', 'Please enter a password with 6 or more characters').isLength
                 email: email,
                 password: password
             });
+
             // encrypt the password
             const salt = await bcrypt.genSalt (10);
             user.password = await bcrypt.hash (password, salt);
+
+            //save to the db and return
+            await user.save();
+            res.send("User successfully registered");
+
+
+
         } catch (error) {
+
+            res.status(500).send('server error');
             
         }
-     return res.send(req.body);
+    // return res.send(req.body);
     }
 }
 );
