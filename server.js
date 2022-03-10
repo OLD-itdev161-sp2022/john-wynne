@@ -5,6 +5,8 @@ import {check, validationResult} from 'express-validator';
 import cors from 'cors';
 import User from './models/User';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
 
 
 //initialize express application//
@@ -78,7 +80,24 @@ check ('password', 'Please enter a password with 6 or more characters').isLength
 
             //save to the db and return
             await user.save();
-            res.send("User successfully registered");
+
+            // generate and return JWT token
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            }
+
+            jwt.sign(
+                payload,
+                config.get('jwtSecret'),
+                {expiresIn:'10hr'},
+                (err, token) => {
+                    if (err)  throw err;
+                    res.json({ token: token});
+                }
+                 
+            )
 
 
 
