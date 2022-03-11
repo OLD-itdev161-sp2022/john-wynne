@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://johnnywindow:555666@cluster0.cck3c.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://johnnywindow:555666@cluster0.cck3c.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "heretic1"
 }
